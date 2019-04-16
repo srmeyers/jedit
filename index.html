@@ -4,13 +4,34 @@
   <meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 	<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
-	<link rel="stylesheet" data-name="vs/editor/editor.main" href="../node_modules/monaco-editor/min/vs/editor/editor.main.css">
+  <link rel="stylesheet" data-name="vs/editor/editor.main" href="../node_modules/monaco-editor/min/vs/editor/editor.main.css">
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <h2>Jedit</h2>
-<button onclick="formatJson()">Format</button>
-<div id="container" style="width:800px;height:600px;border:1px solid grey"></div>
+<div class="main">
+  <div class="editor-group">
+    <h2>JSON One</h2>
+    <button onclick="formatJson1()">Format</button>
+    <button onclick="switchToDiff()">Diff</button>
+    <div id="editor1" class="editor"></div>
+  </div>
+  <div class="editor-group">
+    <h2>JSON Two</h2>
+    <button onclick="formatJson2()">Format</button>
+    <button onclick="switchToDiff()">Diff</button>
+    <div id="editor2" class="editor"></div>
+  </div>
+</div>
+
+<div class="editor-group">
+  <h2>Difference between One & Two</h2>
+  <button onclick="switchToDiff()">Diff</button>
+  <button onclick="nextDiff()">Next Change</button>
+  <button onclick="previousDiff()">Previous Change</button>
+  <div id="diff-editor" class="diff-editor"></div>
+</div>
 
 <script>var require = { paths: { 'vs': '../node_modules/monaco-editor/min/vs' } };</script>
 <script src="../node_modules/monaco-editor/min/vs/loader.js"></script>
@@ -18,18 +39,59 @@
 <script src="../node_modules/monaco-editor/min/vs/editor/editor.main.js"></script>
 
 <script>
-	var editor = monaco.editor.create(document.getElementById('container'), {
+	var editor1 = monaco.editor.create(document.getElementById('editor1'), {
 		value: [
 			'{ "stuff": { "that": [1,2,3], "isin": true, "json": "end"}}',
 		].join('\n'),
     language: 'json',
     tabSize: 2,
-    theme: "vs-dark"
+    // theme: "vs-dark"
   });
-  function formatJson() {
-    const ac = editor.getAction("editor.action.formatDocument")
+  function formatJson1() {
+    const ac = editor1.getAction("editor.action.formatDocument")
     ac.run()
 
+  }
+
+	var editor2 = monaco.editor.create(document.getElementById('editor2'), {
+		value: [
+			'{ "stuff": { "that": [1,2,3], "isin": true, "json": "end"}}',
+		].join('\n'),
+    language: 'json',
+    tabSize: 2,
+    // theme: "vs-dark"
+  });
+  function formatJson2() {
+    const ac = editor2.getAction("editor.action.formatDocument")
+    ac.run()
+
+  }
+
+  var originalModel = monaco.editor.createModel(editor1.getValue(), "text/json");
+  var modifiedModel = monaco.editor.createModel(editor2.getValue(), "text/json");
+
+  var diffEditor = monaco.editor.createDiffEditor(document.getElementById("diff-editor"));
+
+  var navi = monaco.editor.createDiffNavigator(diffEditor, {
+	  followsCaret: true, // resets the navigator state when the user selects something in the editor
+	  ignoreCharChanges: true // jump from line to line
+  });
+
+  function switchToDiff() {
+    originalModel = monaco.editor.createModel(editor1.getValue(), "text/json");
+    modifiedModel = monaco.editor.createModel(editor2.getValue(), "text/json");
+    diffEditor.setModel({
+      original: originalModel,
+      modified: modifiedModel
+    });
+  }
+
+  function nextDiff() {
+    navi.next()
+  }
+
+  function previousDiff() {
+    navi.previous()
   }
 
 </script>

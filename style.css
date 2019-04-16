@@ -1,0 +1,14 @@
+.main {
+  display: flex;
+}
+.editor {
+  width:800px;
+  height:600px;
+  border:1px solid grey
+}
+
+.diff-editor {
+  width:1600px;
+  height:600px;
+  border:10px solid grey"
+}
