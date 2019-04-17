@@ -1,6 +1,6 @@
 chrome.browserAction.onClicked.addListener((tab) => {
   chrome.tabs.create({
-    'url': chrome.extension.getURL('index.html'),
+    'url': chrome.extension.getURL('src/index.html'),
     'active': true
   })
 })
