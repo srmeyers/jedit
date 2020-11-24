@@ -24,5 +24,8 @@
       },
       "description": "Opens JSON Editor"
     }
-  }
+  },
+  "permissions": [
+    "https://*.bestbuy.com/"
+  ]
 }
