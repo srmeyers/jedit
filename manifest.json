@@ -26,6 +26,6 @@
     }
   },
   "permissions": [
-    "https://*.bestbuy.com/"
+    "*://*/*"
   ]
 }
