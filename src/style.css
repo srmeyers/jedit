@@ -1,14 +1,32 @@
 body {
-  background-color: #f4f6f9
+  background-color: #f4f6f9;
+  font-family: sans-serif;
+  margin: 5px;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 h1 {
-  color: #0062cc;
-  border-bottom: 5px solid #6c757d;
-  width: 300px;
+  color: white;
+  margin: 0 0 15px 0;
+  width: 285px;
+  padding-left: 10px;
+  padding-top: 5px;
+  padding-bottom: 4px;
+}
+
+.fullbleed-wrap {
+  background-color: #1165ed;
+}
+
+img {
+  max-width: 100%;
 }
 
 .main {
+  display: flex;
+}
+#toolbar {
   display: flex;
 }
 .editor {
@@ -33,12 +51,59 @@ h1 {
 
 button {
   color: #007bff;
+  font-size:small;
   background-color: #ffffff;
   border-color: #6c757d;
   height: 1.5rem;
   border-bottom: none;
   border-radius: .5rem .5rem 0 0;
   transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
+}
+
+#back-top{
+  margin-left: 310px;
+  font-weight: bolder;
+}
+
+#compare-json{
+  margin-left: 50px;
+  font-weight: bolder;
+}
+
+#compareJson{
+  color: white;
+  margin: 0 0 15px 0;
+  padding-left: 10px;
+  font-weight: bolder;
+  font-size: xx-large;
+  width: 285px;
+  padding-top: 9px;
+  padding-bottom: 9px;
+}
+
+.other-format-div {
+  z-index: 5;
+}
+.other-format {
+  color: white;
+  margin-top: 18px;
+  float: right;
+  font-weight: bolder;
+  z-index: 5;
+  padding-right: 20px;
+  text-decoration: none;
+  transition: color .15s ease-in-out;
+}
+
+.other-format:hover {
+  color: black;
+}
+
+.formatJson_box {
+  color: white;
+  background-color: DodgerBlue;
+  padding: 20px;
+  text-align: center;
 }
 
 button:hover {
@@ -53,6 +118,40 @@ button:hover {
 
 .focus-in-expand-2 {
 	animation: focus-in-expand 1s .5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+.formatJson_box {
+  color: white;
+  background-color: DodgerBlue;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 100px;
+  background-color: #0069d9;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }
 
  @keyframes focus-in-expand {

@@ -1,7 +1,7 @@
 {
-  "name": "Jedit Extensions",
+  "name": "Format JSON",
   "description" : "JSON Format and Compare Extension",
-  "version": "1.0",
+  "version": "1.0.3",
   "manifest_version": 2,
   "browser_action": {
     "default_icon": "icon128.png"
@@ -22,7 +22,7 @@
         "default": "Ctrl+Shift+F",
         "mac": "MacCtrl+Shift+F"
       },
-      "description": "Opens JSON Editor"
+      "description": "Open Format JSON"
     }
   },
   "permissions": [
